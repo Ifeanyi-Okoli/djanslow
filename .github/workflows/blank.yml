@@ -48,3 +48,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-cicd:latest
       
+      - 
+        name: Run django unit test
+        run: |
+          docker run -it --rm -v $PWD:/app -w /app python:3.8-alpine sh -c "pip install -r requirements.txt && python manage.py test"
